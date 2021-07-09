@@ -5,12 +5,12 @@ data <- read_csv("mass_shootings_1982_2021.csv")
 
 ui <- fluidPage(
 
-    titlePanel("Old Faithful Geyser Data")
+    titlePanel("Mass Shootings Exploration")
     
 )
 
 server <- function(input, output) {
-
+    
 }
 
 shinyApp(ui = ui, server = server)
