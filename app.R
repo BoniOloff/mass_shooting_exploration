@@ -14,6 +14,7 @@ ui <- bootstrapPage(
     absolutePanel(top = 10, right = 10, id = 'controls',
                   sliderInput('nb_fatalities', 'Minimum Fatalities', 1, max(data$fatalities), 10),
                   dateRangeInput('date_range', 'Select Date Range', min(data$date), max(data$date)),
+                  actionButton("about_button", "About")
     ),
     tags$style(type = "text/css", "
     html, body {width:100%;height:100%}
@@ -22,6 +23,10 @@ ui <- bootstrapPage(
 )
 
 server <- function(input, output) {
+    observeEvent(input$about_button, {
+        showModal(modalDialog("More information here: https://github.com/BoniOloff/mass_shooting_exploration", title = 'About'))
+    })
+    
     mass_shootings_filtered <- reactive({
         data %>%
             dplyr::filter(
