@@ -22,10 +22,25 @@ ui <- bootstrapPage(
 )
 
 server <- function(input, output) {
+    mass_shootings_filtered <- reactive({
+        data %>%
+            dplyr::filter(
+                date >= as_date(input$date_range[1]),
+                date <= as_date(input$date_range[2]),
+                fatalities >= input$nb_fatalities
+            )
+    })
+    
     output$map <- leaflet::renderLeaflet({
+        mass_shootings_filtered() %>% 
         leaflet() %>%
-            addTiles() %>%
-            setView( -98.58, 39.82, zoom = 5)
+        addTiles() %>%
+        setView( -98.58, 39.82, zoom = 5) %>% 
+        addCircleMarkers(
+            popup = ~ summary,
+            radius = ~ fatalities,
+            fillColor = 'red', color = 'red', weight = 1
+        )
     })
 }
 
