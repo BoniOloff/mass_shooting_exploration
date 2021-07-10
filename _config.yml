@@ -1,3 +1,7 @@
 theme: jekyll-theme-cayman
 title: Mass Shooting Interactive Map
 description: Mass shooting interactive map implemented in Shiny.
+show_more: true
+github:
+  home_url: https://bonioloff.github.io/
+  demo_url: https://bonioloff.shinyapps.io/mass_shooting_exploration/
